@@ -1,12 +1,12 @@
 
-## Modern Data Platform: 500+ ETL Jobs Automation
-This project leverages Apache Airflow to orchestrate and automate the execution of up to 600+ ETL jobs on Databricks. 
+## Modern Data Platform: 1000+ ETL Jobs Automation
+This project leverages Apache Airflow to orchestrate and automate the execution of up to 1000+ ETL jobs on Databricks (Using Job Clusters)
 Instead of pre-building 1000 individual Databricks jobs, the Airflow DAG dynamically creates and manages Databricks jobs at runtime based on configuration files, 
 enabling scalable and maintainable ETL automation.
 
 ## Tech Stack
 - **Apache Airflow**: Workflow orchestrator to manage and schedule ETL pipelines.
-- **Databricks**: Executes ETL jobs dynamically; jobs are created on-the-fly by Airflow at runtime, so there is no need to pre-build or maintain 500 static Databricks jobs.
+- **Databricks**: Executes ETL jobs dynamically; jobs are created on-the-fly by Airflow at runtime, so there is no need to pre-build or maintain 600 static Databricks jobs.
 - **Python**: Primary language for Airflow DAGs and automation scripts.
 - **YAML**: Used for configuration (e.g., job parameters in jobs.yaml).
 - **SQL**: For data transformation and reporting logic.
@@ -81,11 +81,10 @@ jobs:
 ## Airflow Parallelism Settings
 Edit `airflow.cfg` to optimize parallel execution:
 ```
-parallelism = 40
-max_active_runs_per_dag = 50
-dag_concurrency = 25
+parallelism = 200
+max_active_runs_per_dag = 10
+dag_concurrency = 50
 ```
-
 ---
 
 ## ETL Query Types
@@ -141,10 +140,14 @@ Year 1: $1,067,000 (includes migration: $200K)
 Year 2: $867,000                                              
 Year 3: $867,000
 Total : $2,801,000
-SAVING :  $7,038,000 - $2,801,000 = $4,237,000
   
 ROI = (Net Savings - Migration Cost) / Migration Cost × 100
 ROI = ($4,237,000 - $300,000) / $300,000 × 100
 ROI = 1,312%
 3-Year ROI: 1,200% - 1,400%
+SAVING :  $7,038,000 - $2,801,000 = $4,237,000
+Achieved 65-70% performance increase leveraging Databricks Photon engine, 
+Delta Lake optimizations, and Airflow parallel orchestration
+
+
 
