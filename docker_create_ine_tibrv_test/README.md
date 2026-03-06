@@ -1,4 +1,4 @@
-## Example: AWS SNS Message Test
+## AWS SNS Message Test
 
 ### Publish a Message
 ```sh
@@ -15,7 +15,7 @@ aws sqs receive-message --queue-url https://sqs.us-east-1.amazonaws.com/12345678
 ### Publish a Message
 ```sh
 kafka-console-producer --broker-list localhost:9092 --topic my_topic
-# Then type your message and press Enter
+# Then type message and press Enter
 Hello from Kafka test!
 ```
 
@@ -30,7 +30,6 @@ Debezium captures changes from a database and publishes them to Kafka topics. To
 kafka-console-consumer --bootstrap-server localhost:9092 --topic dbserver1.inventory.customers --from-beginning --max-messages 1
 ```
 ## Extending to AWS SNS and Kafka (Debezium)
-
 This project structure and testing approach can be adapted for other messaging platforms such as AWS SNS and Kafka (including Debezium for CDC). Simply replace the RV message commands with the appropriate CLI or SDK calls for your target system, and adjust the Docker setup as needed for those services.
 # TIBCO RV Message Testing - Technical Stack & Flow
 
@@ -58,8 +57,6 @@ This project structure and testing approach can be adapted for other messaging p
    - The test script (`run_tests.sh`) starts a receiver in the container.
    - The sender (can be from host or another container) publishes a message.
    - The receiver logs the message, confirming end-to-end delivery.
-
-
 ## Flow Chart
 
 Below is a high-level flow chart of the process:
@@ -77,17 +74,13 @@ flowchart TD
    C -.-> I[Multi-Node/Cluster Setup (Optional)]
    I -.-> D
 ```
-
-
 ## Docker Network & Fixed IP Example
-
-To assign a fixed IP to your staging server container (matching production):
-
+To assign a fixed IP to staging server container (matching production):
 1. Create a custom Docker network:
     ```sh
     docker network create --subnet=172.28.0.0/16 my_custom_network
     ```
-2. In your `docker-compose.yml`, specify the network and IP:
+2. In `docker-compose.yml`, specify the network and IP:
     ```yaml
     services:
        tibco-rv:
@@ -101,12 +94,8 @@ To assign a fixed IP to your staging server container (matching production):
 3. Use this IP in your sender/receiver commands for accurate simulation.
 
 ## Advanced Test Scenarios
-
-
 ## More RV Message Test Examples
-
 ### 1. Test with Multiple Topics
-
 Start two receivers in different terminals or background processes:
 
 ```sh
@@ -123,7 +112,7 @@ tibrvsend -s "tcp:localhost:7500" -t "topic_beta" -m "Message for Beta"
 
 ### 2. Test with Multiple Senders
 
-You can run several senders in parallel to simulate load:
+Can run several senders in parallel to simulate load:
 
 ```sh
 for i in {1..10}; do
@@ -143,7 +132,7 @@ docker start <container_id>
 
 ### 4. Use Docker Compose for Multi-Node Simulation
 
-You can define multiple RV nodes in your `docker-compose.yml` to simulate a cluster or multi-environment setup. Example:
+Can define multiple RV nodes in `docker-compose.yml` to simulate a cluster or multi-environment setup. Example:
 
 ```yaml
 services:
@@ -171,4 +160,5 @@ networks:
 All message testing is isolated from production, ensuring safe validation. You can extend the setup for more advanced scenarios as needed.
 
 ---
+
 
