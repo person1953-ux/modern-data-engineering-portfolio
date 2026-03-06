@@ -1,0 +1,23 @@
+Input: 15 messy employee records
+Output: 8 cleaned records (7 rows removed due to invalid data)
+Issues fixed:
+Removed rows with missing or invalid emails (6 rows)
+Removed row with missing name (1 row)
+Normalized phone numbers to XXX-XXX-XXXX format
+Standardized city names to title case
+Converted state names/abbreviations to 2-letter codes
+Normalized dates to YYYY-MM-DD format
+Capitalized names properly
+
+
+The main normalization file is employee_data_normalizer.py
+
+It contains the EmployeeDataNormalizer class with all the cleaning logic:
+
+Email validation
+Phone number formatting
+Name normalization
+State/city standardization
+Date formatting
+Duplicate removal
+Data validation

@@ -1,0 +1,9 @@
+id,name,email,phone,city,state,salary,hire_date
+1,John Doe,john.doe@gmail.com,,New York,NY,50000.0,2020-01-15
+3,John Doe,john.doe@gmail.com,,New York,NY,50000.0,2020-01-15
+5,Alice Williams,alice.williams@yahoo.com,,Los Angeles,CA,62000.0,2020-11-30
+8,Edward Norton,edward@norton.com,,New York,NY,61000.0,2019-05-12
+9,Fiona Green,fiona.green@hotmail.co,,Miami,FL,59000.0,2021-02-18
+11,Hannah Lee,hannah.lee@gmail.com,,San Francisco,CA,67000.0,2019-11-11
+12,Henry Ward,henry.ward@msn.com,,San Francisco,CA,68000.0,2022-01-05
+15,Katie Young,katie.young@gmail.com,,Portland,OR,61000.0,2021-09-22

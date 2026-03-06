@@ -1,0 +1,4 @@
+boto3
+awswrangler
+pandas
+databricks-sql-connector

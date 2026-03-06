@@ -1,0 +1,16 @@
+id,name,email,phone,city,state,salary,hire_date
+1,John Doe,john.doe@gmail.com,555-1234,New York,NY,50000,2020-01-15
+2,jane smith,janesmith.com,5551234567,new york,new york,55000,2019-03-22
+3,John Doe,john.doe@gmail.com,555-1234,New York,NY,50000,2020-01-15
+4,Bob Johnson,bob@,555-9999,los angeles,CA,60000,2021-06-10
+5,Alice williams,alice.williams@yahoo.com,,Los Angeles,CA,62000,2020-11-30
+6,Charlie Brown,charlie.brown@,5559876543,chicago,IL,58000,
+7,Diana Prince,,555-2468,CHICAGO,illinois,65000,2018-09-05
+8,Edward Norton,edward@norton.com,555 2468 1111,New york,NY,61000,2019-05-12
+9,Fiona Green,fiona.green@hotmail.co,5552468,Miami,FL,59000,2021-02-18
+10,George Harris,george.harris@,555-2468,miami,florida,63000,2020-08-22
+11,Hannah Lee,hannah.lee@gmail.com,555-1111,San Francisco,CA,67000,2019-11-11
+12,Henry Ward,henry.ward@msn.com,555 1111 222 3,San francisco,CA,68000,2022-01-05
+13,,iris.robinson@gmail.com,555-3333,Seattle,WA,66000,2021-12-03
+14,Jack Thompson,jack.thompson@aol,555-4444,seattle,washington,64000,2020-07-14
+15,Katie Young,katie.young@gmail.com,555.4444,Portland,OR,61000,2021-09-22
