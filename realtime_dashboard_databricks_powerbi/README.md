@@ -1,18 +1,21 @@
-+------------------+        +-------------------+        +-------------------+
-|   Data Source    | -----> | Data Processing   | -----> | Delta Lake Table  |
-|Oracle-direct access)  |  | (Spark in Databricks)       |                   |         Real time
-+------------------+        +-------------------+        +-------------------+
-                                           |                         |
-                                           v                         v
-                                +---------------------+   +------------------------+
-                                | Optimization &      |   | Power BI Dashboard     |
-                                | Maintenance Scripts |   | (Connects via JDBC)    |
-                                +---------------------+   +------------------------+
-
-
-Technical Summary of EQP_STATUS Data Pipeline & Dashboard Project
-1. Overview
-This project involves creating a robust data pipeline for equipment status data, stored efficiently in Delta Lake, with periodic updates, maintenance, and visualization in Power BI. The goal is to enable real-time or near-real-time dashboarding with optimized data loading and query performance.
+# Real-Time Equipment Status Dashboard with Databricks & Power BI
+## Purpose
+The purpose of this project is to provide a scalable, real-time monitoring solution for equipment status in manufacturing or industrial environments. By leveraging Databricks, Delta Lake, and Power BI, the project enables:
+- Continuous ingestion and upsert of equipment status data
+- Efficient storage and fast analytics using Delta Lake
+- Automated data optimization and maintenance
+- Real-time dashboarding and insights for operational decision-making
+## Architecture Flow Chart
+```mermaid
+flowchart LR
+    A[Data Source\n(Oracle or Mock Data)] --> B[Data Processing\n(Spark in Databricks)]
+    B --> C[Delta Lake Table\n(Upsert/Merge)]
+    C --> D[Optimization & Maintenance\n(OPTIMIZE, VACUUM, ANALYZE)]
+    C --> E[Power BI Dashboard\n(DirectQuery/JDBC)]
+    D --> E
+```
+Technical Summary 
+loading and query performance.
 
 a. Real time equipment status data with attributes like EQP_ID, STATUS, STEP, DEPARTMENT, LOT_ID.  
 b. Data Ingestion & Upsert into Delta Lake  
@@ -70,3 +73,4 @@ Automates data updates
 | **Stacked Bar Chart**   | Count of statuses per department                        | Department-wise status analysis                     |
 | **Card**                | Total tools count                                       | Quick summary                                       |
 | **Line Chart**          | Status over time (optional)                              | Trend analysis over recent days                     |
+
