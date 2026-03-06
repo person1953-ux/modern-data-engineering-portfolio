@@ -1,0 +1,89 @@
+
+Yes — this change is in Databricks Job configuration (not Airflow config).
+If you set Databricks job concurrency to 20:
+
+Airflow can still dispatch up to 50 mapped calls.
+Databricks will run 20 in parallel.
+Remaining ~30 runs will queue in Databricks until slots free up.
+Throughput improves vs current 1, but still capped at 20.
+Where to change:
+
+Databricks UI → Workflows → Jobs → open etl_modernized_dynamic_job (job_id=928976755100236) → Edit → set Maximum concurrent runs = 20.
+What does not need change right now:
+
+Airflow already supports up to 50 (your current settings are fine).
+Recommendation:
+
+Start with 20, monitor cluster CPU/memory and Oracle session load, then raise/lower based on stability.
+
+
+Databricks can run in parallel, but it is not fully automatic for your case — you must set limits.
+For Jobs API (run-now), parallelism is controlled by the job setting Maximum concurrent runs.
+If it is 1, runs are serialized (one-by-one).
+If you set it to 20, up to 20 run in parallel and others queue.
+Actual achieved parallelism also depends on compute capacity and workspace quotas.
+So: Databricks supports parallel, but you need to configure it explicitly in Job settings.
+
+
+### As-Is (Tibco RV + BW)
+- ~20 BW runner engines subscribe to same RV messages.
+- Multiple engines receive same event, but schedule logic allows only eligible execution. Schedule logic sometimes broken due to network issues (message loss) resulting duplication and table locked due to more than one BW engine inserting data to table at the same time. 
+- Capacity is mostly pre-provisioned (paid even during idle periods).
+- Peak throughput observed at ~20 concurrent jobs.
+- Practical data volume ceiling observed around 1 GB per job.
+- Configuration is fragmented and largely manual for new ETL pipelines (source/target DB connection, SQL setup, and limited rerun handling on failure).
+
+### To-Be (Airflow + Databricks)
+
+- Airflow controls orchestration and schedule logic centrally.
+- Databricks executes ETL workloads with configurable parallelism.
+- New ETL onboarding is metadata-driven (100% automation) :  Add a row in ETL meta table, and the DAG automatically picks up the configuration and triggers execution without additional pipeline code changes.
+- Elastic compute: pay mostly for execution windows, not idle listeners.
+- Better task-level observability, retry, and lineage than listener-style fanout.
+- Target throughput of 50+ concurrent jobs (based on configured orchestration and compute scaling).
+- Can processed 100+ GB workloads on Databricks/Spark using Delta Lake, optimized partitioning, caching, and autoscaling — aligned with modern AI/ML requirements including: large-scale feature engineering,training data preparation for LLMs, distributed model training support, real-time inference data pipelines
+
+
+https://dbc-a8cc44ec-b1d1.cloud.databricks.com/?o=4496599915693478#job/928976755100236/run/410441709876659  -->	
+https://dbc-a8cc44ec-b1d1.cloud.databricks.com/?o=4496599915693478#job/928976755100236/run/1110844618393608
+https://dbc-a8cc44ec-b1d1.cloud.databricks.com/?o=4496599915693478#job/928976755100236/run/981512619604433
+https://dbc-a8cc44ec-b1d1.cloud.databricks.com/?o=4496599915693478#job/928976755100236/run/928976755100236
+
+
+
+
+Yes—do those first. Here are the exact UI steps:
+
+Open Databricks Workflows → Jobs → open job 928976755100236.
+Click Edit.
+In Job parameters, click Add:
+Key: etl_line_id
+Default value: 0
+In the notebook Task section, find Base parameters (or Parameters for that task), add:
+Key: etl_line_id
+Value: {{job.parameters.etl_line_id}}
+Save job.
+Then validate:
+
+Click Run now once from Databricks UI (quick sanity check).
+If that works, trigger from Airflow again:
+docker exec airflow airflow dags trigger dynamic_metadata_etl
+
+DAG run state: running
+fetch_etl_line_ids: success (1)
+run_etl_line mapped tasks:
+running: 46
+up_for_retry: 4
+failed: 0 (currently)
+
+New ETL registration discovery (scan metadata every minute) is handled by local Airflow DAG code in dynamic_metadata_etl_final.py.
+Actual ETL execution for each discovered etl_line_id is handled by Databricks notebook (because backend is databricks).
+So flow is:
+
+Airflow local Python finds due/new ETL rows.
+Airflow triggers Databricks job with etl_line_id.
+Databricks notebook executes SQL/load logic for that ETL line.
+If backend were switched to local, then step 3 would run in Airflow local Python instead.
+
+
+

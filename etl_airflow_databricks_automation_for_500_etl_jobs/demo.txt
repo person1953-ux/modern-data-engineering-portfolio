@@ -1,0 +1,13 @@
+etl-project/
+├── config/
+│   └── jobs.yaml              ← Job configurations (500+ jobs)
+├── sql/
+│   ├── curated/
+│   │   ├── order_details.sql  ← Complex SQL joins
+│   │   └── customer_360.sql
+│   └── reporting/
+│       └── sales_summary.sql
+├── notebooks/
+│   └── generic_etl.py         ← Single Databricks notebook
+└── dags/
+    └── etl_dag.py             ← Airflow DAG
