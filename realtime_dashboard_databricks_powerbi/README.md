@@ -6,14 +6,11 @@ The purpose of this project is to provide a scalable, real-time monitoring solut
 - Automated data optimization and maintenance
 - Real-time dashboarding and insights for operational decision-making
 ## Architecture Flow Chart
-```mermaid
-flowchart LR
     A[Data Source\n(Oracle or Mock Data)] --> B[Data Processing\n(Spark in Databricks)]
     B --> C[Delta Lake Table\n(Upsert/Merge)]
     C --> D[Optimization & Maintenance\n(OPTIMIZE, VACUUM, ANALYZE)]
     C --> E[Power BI Dashboard\n(DirectQuery/JDBC)]
     D --> E
-```
 Technical Summary 
 loading and query performance.
 
@@ -73,4 +70,5 @@ Automates data updates
 | **Stacked Bar Chart**   | Count of statuses per department                        | Department-wise status analysis                     |
 | **Card**                | Total tools count                                       | Quick summary                                       |
 | **Line Chart**          | Status over time (optional)                              | Trend analysis over recent days                     |
+
 
