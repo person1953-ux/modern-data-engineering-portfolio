@@ -6,7 +6,7 @@ enabling scalable and maintainable ETL automation.
 
 ## Tech Stack
 - **Apache Airflow**: Workflow orchestrator to manage and schedule ETL pipelines.
-- **Databricks**: Executes ETL jobs dynamically; jobs are created on-the-fly by Airflow at runtime, so there is no need to pre-build or maintain 600 static Databricks jobs.
+- **Databricks**: Executes ETL jobs dynamically; jobs are created on-the-fly by Airflow at runtime, so there is no need to pre-build or maintain 1000 static Databricks jobs.
 - **Python**: Primary language for Airflow DAGs and automation scripts.
 - **YAML**: Used for configuration (e.g., job parameters in jobs.yaml).
 - **SQL**: For data transformation and reporting logic.
@@ -148,6 +148,7 @@ ROI = 1,312%
 SAVING :  $7,038,000 - $2,801,000 = $4,237,000
 Achieved 65-70% performance increase leveraging Databricks Photon engine, 
 Delta Lake optimizations, and Airflow parallel orchestration
+
 
 
 
