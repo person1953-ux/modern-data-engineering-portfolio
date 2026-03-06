@@ -122,20 +122,14 @@ dag_concurrency = 50
 - Integrate additional data quality checks or notifications as needed.
 ---
 
-## References
-- [Airflow Docs](https://airflow.apache.org/docs/)
-- [Databricks Docs](https://docs.databricks.com/)
-
-
-
-LEGACY STACK
+-LEGACY STACK
 Year 1: $2,346,000 (mid-range)                                
 Year 2: $2,346,000                                            
 Year 3: $2,346,000 
 Total : $7,038,000
   
 
-MODERN STACK
+-MODERN STACK
 Year 1: $1,067,000 (includes migration: $200K)                
 Year 2: $867,000                                              
 Year 3: $867,000
@@ -144,10 +138,19 @@ Total : $2,801,000
 ROI = (Net Savings - Migration Cost) / Migration Cost × 100
 ROI = ($4,237,000 - $300,000) / $300,000 × 100
 ROI = 1,312%
-3-Year ROI: 1,200% - 1,400%
-SAVING :  $7,038,000 - $2,801,000 = $4,237,000
+
+-3-Year ROI: 1,200% - 1,400%
+
+-SAVING :  $7,038,000 - $2,801,000 = $4,237,000
+
 Achieved 65-70% performance increase leveraging Databricks Photon engine, 
 Delta Lake optimizations, and Airflow parallel orchestration
+
+## References
+- [Airflow Docs](https://airflow.apache.org/docs/)
+- [Databricks Docs](https://docs.databricks.com/)
+
+
 
 
 
