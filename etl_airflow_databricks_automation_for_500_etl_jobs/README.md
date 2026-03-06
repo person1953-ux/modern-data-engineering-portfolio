@@ -1,6 +1,6 @@
 
 ## Modern Data Platform: 500+ ETL Jobs Automation
-This project leverages Apache Airflow to orchestrate and automate the execution of up to 1000+ ETL jobs on Databricks. 
+This project leverages Apache Airflow to orchestrate and automate the execution of up to 600+ ETL jobs on Databricks. 
 Instead of pre-building 1000 individual Databricks jobs, the Airflow DAG dynamically creates and manages Databricks jobs at runtime based on configuration files, 
 enabling scalable and maintainable ETL automation.
 
@@ -82,8 +82,8 @@ jobs:
 Edit `airflow.cfg` to optimize parallel execution:
 ```
 parallelism = 40
-max_active_runs_per_dag = 20
-dag_concurrency = 20
+max_active_runs_per_dag = 50
+dag_concurrency = 25
 ```
 
 ---
@@ -131,15 +131,20 @@ dag_concurrency = 20
 
 LEGACY STACK
 Year 1: $2,346,000 (mid-range)                                
-  Year 2: $2,346,000                                            
-  Year 3: $2,346,000            
+Year 2: $2,346,000                                            
+Year 3: $2,346,000 
+Total : $7,038,000
+  
 
 MODERN STACK
 Year 1: $1,067,000 (includes migration: $200K)                
-  Year 2: $867,000                                              
-  Year 3: $867,000                                              
+Year 2: $867,000                                              
+Year 3: $867,000
+Total : $2,801,000
+SAVING :  $7,038,000 - $2,801,000 = $4,237,000
+  
 ROI = (Net Savings - Migration Cost) / Migration Cost × 100
-
 ROI = ($4,237,000 - $300,000) / $300,000 × 100
 ROI = 1,312%
 3-Year ROI: 1,200% - 1,400%
+
