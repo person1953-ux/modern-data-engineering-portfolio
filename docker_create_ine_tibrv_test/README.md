@@ -1,40 +1,6 @@
-## AWS SNS Message Test
 
-### Publish a Message
-```sh
-aws sns publish --topic-arn arn:aws:sns:us-east-1:123456789012:MyTopic --message "Hello from SNS test!"
-```
-
-### Subscribe and Receive (SQS Example)
-```sh
-aws sqs receive-message --queue-url https://sqs.us-east-1.amazonaws.com/123456789012/MyQueue
-```
-
-## Example: Kafka (Debezium) Message Test
-
-### Publish a Message
-```sh
-kafka-console-producer --broker-list localhost:9092 --topic my_topic
-# Then type message and press Enter
-Hello from Kafka test!
-```
-
-### Receive a Message
-```sh
-kafka-console-consumer --bootstrap-server localhost:9092 --topic my_topic --from-beginning --max-messages 1
-```
-
-### Debezium CDC Example
-Debezium captures changes from a database and publishes them to Kafka topics. To test, insert or update a row in your source DB, then consume from the Debezium topic:
-```sh
-kafka-console-consumer --bootstrap-server localhost:9092 --topic dbserver1.inventory.customers --from-beginning --max-messages 1
-```
-## Extending to AWS SNS and Kafka (Debezium)
-This project structure and testing approach can be adapted for other messaging platforms such as AWS SNS and Kafka (including Debezium for CDC). Simply replace the RV message commands with the appropriate CLI or SDK calls for your target system, and adjust the Docker setup as needed for those services.
 # TIBCO RV Message Testing - Technical Stack & Flow
-
 ## Technical Stack
-
 - **TIBCO Rendezvous (RV):** For reliable message publishing and receiving.
 - **Docker:** Containerizes the TIBCO RV environment for isolated, repeatable testing.
 - **Bash Scripts:** Automate message send/receive tests.
@@ -91,7 +57,7 @@ To assign a fixed IP to staging server container (matching production):
        my_custom_network:
           external: true
     ```
-3. Use this IP in your sender/receiver commands for accurate simulation.
+3. Use this IP in sender/receiver commands for accurate simulation.
 
 ## Advanced Test Scenarios
 ## More RV Message Test Examples
@@ -131,7 +97,6 @@ docker start <container_id>
 ```
 
 ### 4. Use Docker Compose for Multi-Node Simulation
-
 Can define multiple RV nodes in `docker-compose.yml` to simulate a cluster or multi-environment setup. Example:
 
 ```yaml
@@ -154,11 +119,30 @@ networks:
    my_custom_network:
       external: true
 ```
-
+## Extending to AWS SNS and Kafka (Debezium)
+This project structure and testing approach can be adapted for other messaging platforms such as AWS SNS and Kafka (including Debezium for CDC). 
+Simply replace the RV message commands with the appropriate CLI or SDK calls for your target system, and adjust the Docker setup as needed for those services.
+Kafka (Debezium) Message Test
+### Publish a Message
+```sh
+kafka-console-producer --broker-list localhost:9092 --topic my_topic
+# Then type message and press Enter
+Hello from Kafka test!
+```
+### Receive a Message
+```sh
+kafka-console-consumer --bootstrap-server localhost:9092 --topic my_topic --from-beginning --max-messages 1
+```
+### Debezium CDC Example
+Debezium captures changes from a database and publishes them to Kafka topics. To test, insert or update a row in your source DB, then consume from the Debezium topic:
+```sh
+kafka-console-consumer --bootstrap-server localhost:9092 --topic dbserver1.inventory.customers --from-beginning --max-messages 1
+```
 ---
 
 All message testing is isolated from production, ensuring safe validation. You can extend the setup for more advanced scenarios as needed.
 
 ---
+
 
 
