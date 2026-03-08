@@ -20,9 +20,8 @@
    - The sender (can be from host or another container) publishes a message.
    - The receiver logs the message, confirming end-to-end delivery.
 ## Flow Chart
-```mermaid
-flowchart TD
-   A[Create Project Structure] --> B[Build Docker Image]
+
+   A [Create Project Structure] --> B [Build Docker Image]
    B --> C[Start Staging Server in Docker]
    C --> D[Start RV Receiver in Container]
    D --> E[Publish Message from Sender]
@@ -32,7 +31,7 @@ flowchart TD
    H -.-> D
    C -.-> I[Multi-Node/Cluster Setup (Optional)]
    I -.-> D
-```
+   
 ## Docker Network & Fixed IP Example
 To assign a fixed IP to staging server container (matching production):
 1. Create a custom Docker network:
@@ -136,6 +135,7 @@ kafka-console-consumer --bootstrap-server localhost:9092 --topic dbserver1.inven
 Even all message testing sending RVmsg to the same IP of production server , but this happens in docker with isolated network , poduction server is safe,  no mesage gets out to the production line.  
 
 ---
+
 
 
 
