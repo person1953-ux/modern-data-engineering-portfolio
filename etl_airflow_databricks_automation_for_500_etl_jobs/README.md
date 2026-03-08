@@ -23,7 +23,7 @@ enabling scalable and maintainable ETL automation.
 ## Project Structure
 ```
 config/
-  jobs.yaml                # Job configurations (100+ jobs)
+  jobs.yaml                # Job configurations (1000+ jobs)
 sql/
   curated/
     order_details.sql      # Complex SQL joins
@@ -149,6 +149,7 @@ Delta Lake optimizations, and Airflow parallel orchestration
 ## References
 - [Airflow Docs](https://airflow.apache.org/docs/)
 - [Databricks Docs](https://docs.databricks.com/)
+
 
 
 
