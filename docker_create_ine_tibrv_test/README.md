@@ -18,15 +18,11 @@
 3. **Staging Server Setup**
    - Use Docker Compose to start a containerized TIBCO RV instance.
    - The container is configured to use the same IP address as the production server (or a fixed IP in the Docker network).
-
 4. **Message Testing**
    - The test script (`run_tests.sh`) starts a receiver in the container.
    - The sender (can be from host or another container) publishes a message.
    - The receiver logs the message, confirming end-to-end delivery.
 ## Flow Chart
-
-Below is a high-level flow chart of the process:
-
 ```mermaid
 flowchart TD
    A[Create Project Structure] --> B[Build Docker Image]
@@ -143,6 +139,7 @@ kafka-console-consumer --bootstrap-server localhost:9092 --topic dbserver1.inven
 All message testing is isolated from production, ensuring safe validation. You can extend the setup for more advanced scenarios as needed.
 
 ---
+
 
 
 
