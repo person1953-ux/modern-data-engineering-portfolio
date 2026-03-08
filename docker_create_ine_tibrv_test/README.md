@@ -113,7 +113,7 @@ networks:
 ```
 ## Extending to AWS SNS and Kafka (Debezium)
 This project structure and testing approach can be adapted for other messaging platforms such as AWS SNS and Kafka (including Debezium for CDC). 
-Simply replace the RV message commands with the appropriate CLI or SDK calls for your target system, and adjust the Docker setup as needed for those services.
+Simply replace the RV message commands with the appropriate CLI or SDK calls for target system, and adjust the Docker setup as needed for those services.
 Kafka (Debezium) Message Test
 ### Publish a Message
 ```sh
@@ -135,6 +135,7 @@ kafka-console-consumer --bootstrap-server localhost:9092 --topic dbserver1.inven
 Even all message testing sending RVmsg to the same IP of production server , but this happens inside docker with isolated network , poduction server is safe,  no mesage gets out to the production line.  
 
 ---
+
 
 
 
