@@ -133,9 +133,10 @@ kafka-console-consumer --bootstrap-server localhost:9092 --topic dbserver1.inven
 ```
 ---
 
-All message testing is isolated from production, ensuring safe validation. You can extend the setup for more advanced scenarios as needed.
+Even all message testing sending RVmsg to the same IP of production server , but this happens in docker with isolated network , poduction server is safe,  no mesage gets out to the production line.  
 
 ---
+
 
 
 
