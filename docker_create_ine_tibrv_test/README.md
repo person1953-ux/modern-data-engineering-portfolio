@@ -2,16 +2,13 @@
 # TIBCO RV Message Testing - Technical Stack & Flow
 ## Technical Stack
 - **TIBCO Rendezvous (RV):** For reliable message publishing and receiving.
-- **Docker:** Containerizes the TIBCO RV environment for isolated, repeatable testing.
+- **Docker:** Containerizes the staging application servers and TIBCO RV environment(matching with production evironment) for isolated, repeatable testing.
 - **Bash Scripts:** Automate message send/receive tests.
-- **Windows Batch Scripts:** Automate directory and file structure creation.
 - **Docker Compose:** Orchestrates multi-container setup for staging/production simulation.
 
 ## System Flow
 
-1. **Directory Structure Creation**
-   - Use `create_tibco_structure.bat` to generate all required folders and initial files for the project.
-
+1. **Directory Structure**
 2. **Docker Image Build**
    - Build the Docker image for TIBCO RV using the provided Dockerfile.
 
@@ -139,6 +136,7 @@ kafka-console-consumer --bootstrap-server localhost:9092 --topic dbserver1.inven
 All message testing is isolated from production, ensuring safe validation. You can extend the setup for more advanced scenarios as needed.
 
 ---
+
 
 
 
